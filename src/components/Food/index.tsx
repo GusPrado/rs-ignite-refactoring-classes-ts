@@ -4,7 +4,7 @@ import { FiEdit3, FiTrash } from 'react-icons/fi';
 import { Container } from './styles';
 import api from '../../services/api';
 
-interface FoodProps {
+interface FoodProps extends HTMLButtonElement {
   food: {
     id: number;
     name: string;
@@ -13,7 +13,7 @@ interface FoodProps {
     available: boolean;
     price: number;
   };
-  handleEditFood: (food: object) => void;
+  handleEditFood: (food: FoodProps) => void;
   handleDelete: (id: number) => void;
 }
 
@@ -29,7 +29,7 @@ const Food = ({ food, handleEditFood, handleDelete }: FoodProps) => {
     setIsAvailable(!isAvailable);
   };
 
-  const setEditingFood = () => {
+  const setEditingFood: (food: FoodProps) => void = (food) => {
     handleEditFood(food);
   };
 
@@ -84,21 +84,5 @@ const Food = ({ food, handleEditFood, handleDelete }: FoodProps) => {
     </Container>
   );
 };
-
-// class Food extends Component {
-//   // constructor(props) {
-//   //   super(props);
-
-//   //   const { available } = this.props.food;
-//   //   this.state = {
-//   //     isAvailable: available
-//   //   };
-//   // }
-
-//   render() {
-//     const { isAvailable } = this.state;
-//     const { food, handleDelete } = this.props;
-//   }
-// }
 
 export default Food;
